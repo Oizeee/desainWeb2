@@ -82,7 +82,7 @@ onMounted(async () => {
 
 const updateUser = async () => {
   try {
-    await fetch(`https://687d01b4918b64224330bbd0.mockapi.io/api/users/${userId}`, {
+    await fetch(`https://687d01b4918b64224330bbd0.mockapi.io/users${userId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

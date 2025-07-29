@@ -20,13 +20,19 @@
           </td>
           <td class="border px-4 py-2 font-medium">{{ user.name }}</td>
           <td class="border px-4 py-2">{{ user.email }}</td>
-          <td class="border px-4 py-2">
+          <td class="border px-4 py-2 flex gap-4">
             <router-link
               :to="`/edit/${user.id}`"
               class="text-blue-600 hover:underline font-semibold"
             >
               Edit
             </router-link>
+            <button
+              @click="deleteUser(user.id)"
+              class="text-red-600 hover:underline font-semibold"
+            >
+              Hapus
+            </button>
           </td>
         </tr>
       </tbody>
@@ -43,7 +49,7 @@ const loading = ref(true)
 
 onMounted(async () => {
   try {
-    const res = await fetch('https://687d01b4918b64224330bbd0.mockapi.io/api/users/')
+    const res = await fetch('https://68886995adf0e59551b9d98e.mockapi.io/users/')
     users.value = await res.json()
   } catch (error) {
     console.error('Gagal memuat data user:', error)
@@ -51,4 +57,22 @@ onMounted(async () => {
     loading.value = false
   }
 })
+
+const deleteUser = async (id) => {
+  const konfirmasi = confirm('Apakah kamu yakin ingin menghapus user ini?')
+  if (!konfirmasi) return
+
+  try {
+    const res = await fetch(`https://68886995adf0e59551b9d98e.mockapi.io/users/${id}`, {
+      method: 'DELETE',
+    })
+    if (res.ok) {
+      users.value = users.value.filter((user) => user.id !== id)
+    } else {
+      console.error('Gagal menghapus user.')
+    }
+  } catch (error) {
+    console.error('Terjadi kesalahan saat menghapus:', error)
+  }
+}
 </script>

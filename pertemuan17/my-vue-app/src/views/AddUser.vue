@@ -60,7 +60,7 @@ const router = useRouter()
 
 const submitUser = async () => {
   try {
-    await fetch('https://687d01b4918b64224330bbd0.mockapi.io/api/users/', {
+    await fetch('https://687d01b4918b64224330bbd0.mockapi.io/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
