@@ -36,7 +36,7 @@ const loading = ref(true)
 
 onMounted(async () => {
   try {
-    const res = await fetch('https://687d01b4918b64224330bbd0.mockapi.io/api/users/')
+    const res = await fetch('https://687d01b4918b64224330bbd0.mockapi.io/users')
     users.value = await res.json()
   } catch (error) {
     console.error('Gagal mengambil data:', error)
